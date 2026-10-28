@@ -19,7 +19,7 @@ public class Main {
           1- Adicionar;
           2- Editar
           3- Listar todos os contatos
-          4- Remover
+          4- Remover 
           5- Sair da agenda
       
       
@@ -51,19 +51,77 @@ public class Main {
 
 // Editar
         else if(opcao == 2){
-          System.out.println("TESTE");
+          System.out.println("2- Editar contato:\n");
+          if(nomes.size()<=0){
+            System.out.print("-=-=-=-=-=-=-");
+            System.out.print("Agenda vazia!");
+            System.out.println("-=-=-=-=-=-=-\n");
+          }else{
+            System.out.print("Deseja alterar o nome ou número?\n (0 - nome | 1 - Número) ");
+            int escolherMudança = scanner.nextInt();
+            // Alteração de nome
+            if(escolherMudança == 0){
+              System.out.print("\n-=-=-=-=-=-=-");
+              System.out.print("Alterar nome!");
+              System.out.println("-=-=-=-=-=-=-\n");
+
+              System.out.print("Informe o indice do nome a ser alterado: ");
+              int indice = scanner.nextInt();
+              scanner.nextLine();
+              if ((indice > nomes.size()-1) || (nomes.size() == 0)){
+                System.out.print("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+                System.out.println("\tIndice = "+indice+" fora dos limites!\n");
+                System.out.println("\t\tAção Cancelada!");
+                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+              }else{
+                System.out.print("\nQual será o novo nome: ");
+                String novoNome = scanner.nextLine();
+                nomes.set(indice,novoNome);
+                System.out.print("\n-=-=-=-=-=-=-Nome Atualizado-=-=-=-=-=-=-\n");
+
+              }
+            // alteração do numero
+            }else if(escolherMudança==1){
+              System.out.print("\n-=-=-=-=-=-=-");
+              System.out.print("Alterar número!");
+              System.out.println("-=-=-=-=-=-=-\n");
+
+              System.out.print("Informe o indice do número a ser alterado: ");
+              int indice = scanner.nextInt();
+              scanner.nextLine();
+              if ((indice > contatos.size()-1) || (contatos.size() == 0)){
+                System.out.print("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+                System.out.println("\tIndice = "+indice+" fora dos limites!\n");
+                System.out.println("\t\tAção Cancelada!");
+                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+              }else{
+                System.out.print("\nQual será o novo número: ");
+                int novoNumero = scanner.nextInt();
+                contatos.set(indice,novoNumero);
+                System.out.print("\n-=-=-=-=-=-=-Numero Atualizado-=-=-=-=-=-=-\n");
+
+              }
+            }else{
+              System.out.print("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+              System.out.println("Opção fora dos paramêtros");
+              System.out.print("Ação Cancelada!");
+              System.out.println("-=-=-=-=-=-=-\n");
+            }
+            
+          }
+
         }
 
 // Listar
         else if(opcao == 3){
-          System.out.println("3- Listar todos os contatos:");
+          System.out.println("3- Listar todos os contatos:\n");
           if (nomes.size()==0){
-            System.out.print("\n-=-=-=-=-=-=-");
+            System.out.print("-=-=-=-=-=-=-");
             System.out.print("Nenhum Contato Agendado!");
             System.out.println("-=-=-=-=-=-=-\n");
           }else{
             for (int i = 0; i<contatos.size();i++){
-              System.out.println(i+1+"º "+nomes.get(i)+" = "+contatos.get(i)+";");
+              System.out.println(i+"º "+nomes.get(i)+" = "+contatos.get(i)+";");
             }
             System.out.print("\n-=-=-=-=-=-=-");
             System.out.print("Fim da Agenda");
@@ -76,7 +134,7 @@ public class Main {
           System.out.println("4- Remover um contato:");
           System.out.print("Informe o indice do contato: ");
           int indice = scanner.nextInt();
-          if ((indice > nomes.size()) || (nomes.size() == 0)){
+          if ((indice > nomes.size()-1) || (nomes.size() == 0)){
             System.out.print("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
             System.out.println("\tIndice = "+indice+" fora dos limites!\n");
             System.out.println("\t\tAção Cancelada!");
@@ -102,7 +160,8 @@ public class Main {
 
 // Saida
         else if(opcao == 0){
-          System.out.print("\n-=-=-=-=-=-=-");
+          System.out.println("0- Sair da Agenda:\n");
+          System.out.print("-=-=-=-=-=-=-");
           System.out.print("Fechando a Agenda");
           System.out.println("-=-=-=-=-=-=-\n");
         }   
